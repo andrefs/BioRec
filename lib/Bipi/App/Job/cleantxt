@@ -1,0 +1,13 @@
+#!/usr/bin/perl -ws
+use strict; use warnings;
+
+my $text = join '',<>;
+
+$text =~ s/\n/__THISISALINEBREAK__/gs;
+$text =~ s/[^[:print:]]//gs;
+$text =~ s/__THISISALINEBREAK__/\n/gs;
+$text =~ s/^\d+$//gsm;
+#$text =~ s/\n([^\n]+)\n/\n<p>$1<\/p>/gs;
+
+print $text;
+

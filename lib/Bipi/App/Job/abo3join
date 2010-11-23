@@ -1,0 +1,59 @@
+#!/usr/bin/perl -ws
+use strict; use warnings;
+use 5.010;
+
+#usage: abo3join abner o3_ne_file 
+my @text;
+my $abfile = shift;
+open(ABNER,$abfile) or die "Could not open file $abfile!";
+@text = <ABNER>;
+close ABNER;
+
+my $oscar3_ne = shift or die "nao deu";
+open(OSCAR3NE,$oscar3_ne);
+while(<OSCAR3NE>){
+	/^<ne (.*?)>\s*(.*?)\s*<\/ne>$/;
+	my $o3_tag = $1;
+	my $ne = $2;
+	for (@text){
+		$_ =~ s/<ne (.*?)>\s*\Q$ne\E\s*<\/ne>/proc($1,$o3_tag,$ne)/gse;
+		#$_ =~ s/([^\s>])\s*\b\Q$ne\E\b\s*([^\s<])/proc2($1,$o3_tag,$ne,$2)/gse;
+		$_ =~ s/(<\/ne>[^<>]*)\s*\b\Q$ne\E\b\s*([^<>]*<ne)/proc2($1,$o3_tag,$ne,$2)/gse;
+	}
+}
+for (@text){ print }
+close OSCAR3NE;
+
+sub proc{
+	my $ab_tag = shift;
+	my $o3_tag = shift;
+	my $ne = shift;
+
+	if($o3_tag =~ /enzyme/) {return "<ne $o3_tag>$ne</ne>" }
+	else { return "<ne $ab_tag>$ne</ne>";}
+}
+
+	
+
+sub proc2{
+	my ($init,$o3_tag,$ne,$end) = @_;
+	return "$init <ne $o3_tag>$ne</ne> $end";
+}
+
+#sub proc2{
+#	my ($init,$o3_tag,$ne,$end) = @_;
+#	return "$init <ne $o3_tag>$ne</ne> $end";
+#}
+
+#sub linkit{
+#	my $tag = shift;
+#	my $ne = shift;
+#
+#	my $uniprot = qq{http://www.uniprot.org/uniprot/?query="$ne"&sort=score};
+#	my $entrez = qq{http://www.ncbi.nlm.nih.gov/gene?term="$ne"};
+#	my $chebi = qq{http://www.ebi.ac.uk/chebi/advancedSearchFT.do?searchString="$ne"&queryBean.stars=3&queryBean.stars=-1};
+#}
+
+
+
+

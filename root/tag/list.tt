@@ -1,0 +1,45 @@
+
+<table>
+<tr>
+
+<th> [% order_by_column_link('name', 'Name') %] </th>
+
+
+<th> [% order_by_column_link('description', 'Description') %] </th>
+
+<th> papers </th>
+
+ 
+</tr>
+[% WHILE (row = result.next) %]
+    <tr>
+    
+    <td>
+    
+    [%  row.name %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.description %]
+    
+    </td>
+    
+    <td>
+    
+    [% FOR val = row.papers; val; ', '; END %]
+    
+    </td>
+     
+    [% SET id = row.$pri %]
+    <td><a href="[% c.uri_for_action( '/tag/view', [], row.id,  ) %]">View</a></td>
+    <td><a href="[% c.uri_for_action( '/tag/edit', [], row.id,  ) %]">Edit</a></td>
+    <td><a href="[% c.uri_for_action( '/tag/destroy', [], row.id,  ) %]">Delete</a></td>
+    </tr>
+[% END %]
+</table>
+[% PROCESS pager.tt %]
+<br/>
+<a href="[% c.uri_for_action('/tag/edit' ) %]">Add</a>
+

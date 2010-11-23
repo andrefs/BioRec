@@ -1,0 +1,1 @@
+| <a href="[% base %]">Home</a> | <a class="uploadlink" href="[% base %]upload">Upload Papers </a> | <a href="[% base %]paper">Papers</a> | <a href="[% base %]pset">Sets</a> | <a href="[% base %]class">Classes</a> | <a href="[% base %]entity">Entities</a> |

@@ -1,0 +1,63 @@
+#!/usr/bin/perl -ws
+use warnings; use strict;
+use base qw(HTML::Parser);
+
+my $min = 3;
+my $max = 60;
+
+while(my $line = <>){
+	$line =~ s/<ne.*?type="CM".*?>(.+?)<\/?ne>/proc_cm($1)/ge;
+	$line =~ s/<ne.*?type="ONT".*?>(.+?)<\/?ne>/proc_ont($1)/ge;
+	$line =~ s/<ne.*?type="RN".*?>(.+?)<\/?ne>/proc_rn($1)/ge;
+	$line =~ s/<ne.*?type="CJ".*?>(.+?)<\/?ne>/proc_cj($1)/ge;
+	$line =~ s/<ne.*?type="CPR".*?>(.+?)<\/?ne>/proc_cpr($1)/ge;
+	$line =~ s/<ne.*?type="PRW".*?>(.+?)<\/?ne>/proc_prw($1)/ge;
+
+	$line =~ s/<ne.*?type="ASE".*?>(.+?)<\/?ne>/proc_ase($1)/ge;
+	print $line;
+}
+
+
+sub proc_cm{
+	my $ent = shift;
+	my $length = length($ent);
+	return $ent if ($length<$min or $length>$max);
+	return qq{<ne class="chemical" tagger="oscar3">$ent<\/ne>}
+}
+sub proc_ont{
+	my $ent = shift;
+	my $length = length($ent);
+	return $ent if ($length<$min or $length>$max);
+	return qq{<ne class="other" tagger="oscar3">$ent<\/ne>}
+}
+sub proc_rn{
+	my $ent = shift;
+	my $length = length($ent);
+	return $ent if ($length<$min or $length>$max);
+	return qq{<ne class="chemical" type="reaction" tagger="oscar3">$ent<\/ne>}
+}
+sub proc_cj{
+	my $ent = shift;
+	my $length = length($ent);
+	return $ent if ($length<$min or $length>$max);
+	return qq{<ne class="chemical" type="adjective" tagger="oscar3">$ent<\/ne>}
+}
+sub proc_cpr{
+	my $ent = shift;
+	my $length = length($ent);
+	return $ent if ($length<$min or $length>$max);
+	return qq{<ne class="chemical" type="prefix" tagger="oscar3">$ent<\/ne>}
+}
+sub proc_prw{
+	my $ent = shift;
+	my $length = length($ent);
+	return $ent if ($length<$min or $length>$max);
+	return qq{<ne class="chemical" type="pot_rw" tagger="oscar3">$ent<\/ne>}
+}
+sub proc_ase{
+	my $ent = shift;
+	my $length = length($ent);
+	return $ent if ($length<$min or $length>$max);
+	return qq{<ne class="protein" type="enzyme" tagger="oscar3">$ent<\/ne>}
+}
+

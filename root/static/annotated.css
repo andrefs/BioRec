@@ -1,0 +1,33 @@
+
+.protein,.chemical,.dna,.rna,.cell_type,.cell_line,.other{
+	color: #FF3300;
+	font-weight: bold;
+}
+.protein:hover,.chemical:hover,.dna:hover,.rna:hover,.cell_type:hover,.cell_line:hover,.other:hover{
+	background-color: #CCCCFF;
+}
+.clean{
+	color: black;
+	width:800px;
+	margin-left:auto;
+	margin-right:auto;
+	font-weight: normal;
+}
+P
+{
+   display: block;
+   margin-top: 10px;
+}
+PROTEIN,DNA,RNA,CELL_TYPE,CELL_LINE
+{
+   color: #FF0000;
+   font-weight: bold;
+}
+
+CM,RN,CJ,CPR,ASE,PRW,ONT
+{
+   background-color: #00FF00;
+}
+h3{
+	color:#0073B5;
+}

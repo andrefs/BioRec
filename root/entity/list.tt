@@ -1,0 +1,51 @@
+
+<table>
+<tr>
+
+<th> [% order_by_column_link('name', 'Name') %] </th>
+
+<th> class_ids </th>
+
+<th> paper_ids </th>
+
+ 
+</tr>
+[% WHILE (row = result.next) %]
+    <tr>
+    
+    <td>
+    
+    [%  row.name %]
+    
+    </td>
+    
+    <td>
+    
+    [% FOR val = row.entity_classes;'<a href="';
+			c.uri_for_action( '/class/view', [],val.class_id.id, );
+			'"> ';val.class_id.name;'</a>,<br /> '; 
+	END %]
+    </td>
+    
+    <td>
+    
+    [% FOR val = row.paper_entities;'<a href="';
+			c.uri_for_action( '/paper/view', [],val.paper_id.id, );
+			'"> ';val.paper_id.original_name;'</a>,<br /> '; 
+	END %]
+    
+    </td>
+     
+    [% SET id = row.$pri %]
+    <td><a href="[% c.uri_for_action( '/entity/view', [], row.id,  ) %]">View</a></td>
+<!--
+    <td><a href="[% c.uri_for_action( '/entity/edit', [], row.id,  ) %]">Edit</a></td>
+    <td><a href="[% c.uri_for_action( '/entity/destroy', [], row.id,  ) %]">Delete</a></td>
+	-->
+    </tr>
+[% END %]
+</table>
+[% PROCESS pager.tt %]
+<br/>
+<a href="[% c.uri_for_action('/entity/edit' ) %]">Add</a>
+

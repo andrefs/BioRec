@@ -1,0 +1,111 @@
+<link href="[%base%]static/annotated.css" type="text/css" rel="stylesheet"/>
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Set:</b></td>
+<td>
+    
+<a href="[% c.uri_for_action('/pset/view', item.pset,  ) %]">[%  item.pset %]</a>
+    
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>File Name:</b></td>
+<td>
+    
+    [%  item.original_name %]
+    
+</td>
+</tr>
+<tr>
+<td class="view_label"><b>PubMed ID:</b></td>
+<td>
+ <a href="http://www.ncbi.nlm.nih.gov/pubmed/[%  item.pmid %]">[%  item.pmid%]</a>
+</td>
+</tr>
+
+
+<tr>
+<td class="view_label"><b>Status:</b></td>
+<td>
+    
+    [%  item.status %]
+    
+</td>
+</tr>
+
+<tr>
+</tr>
+
+<tr>
+<td class="view_label"><b>Annotated Text:</b></td>
+<td>
+   <a href="#annotated">View</a> 
+    
+</td>
+</tr>
+
+<!--
+<tr>
+<td class="view_label"><b>Entities([%tt_ecount%]):</b></td>
+<td>
+   
+    [% FOR val = item.paper_entities;'<a href="';
+			c.uri_for_action( '/entity/view', [],val.entity_id.id, );
+			'"> ';val.entity_id.name;'</a>,<br /> '; 
+	END %]
+    
+</td>
+</tr>
+-->
+<tr>
+<td class="view_label"><b>Total entities:</b></td>
+<td>
+   
+    [% item.entity_count %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Entities/line:</b></td>
+<td>
+   
+    [% item.entities_by_line %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Entities/paragraph:</b></td>
+<td>
+   
+    [% item.entities_by_paragraph %]
+    
+</td>
+</tr>
+
+
+
+
+
+<!--
+<tr>
+<td class="view_label"><b>Psets:</b></td>
+<td>
+    
+    [% FOR val = item.paper_sets; val.pset_id; ', '; END %]
+    
+</td>
+-->
+</tr>
+
+</table>
+<!--<hr/>
+<a href="[% c.uri_for_action('/paper/list' ) %]">List</a>-->
+
+<hr/>
+<a name="annotated"><h2>Annotated Text</h2></a>
+<div class="clean">[% text %]</div>

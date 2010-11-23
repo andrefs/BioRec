@@ -1,0 +1,24 @@
+#!/usr/bin/perl -ws
+use warnings; use strict;
+
+my $min = 3;
+my $max = 60;
+
+while(my $line = <>){
+	$line =~ s/<([A-Z_]*?)>\s*(.+?)\s*<\/?\1>/proc($1,$2)/ge;
+	$line =~ s/<\s*(\w+)\s*>/<$1>/g;
+	$line =~ s/<\s*\/\s*(\w+)\s*>/<\/$1>/g;
+	$line =~ s/<\s*(\w+)\s*\/\s*>/<$1 \/>/g;
+	print $line;
+}
+
+sub proc{
+	my $tag = shift;
+	my $ent = shift;
+	my $length = length($ent);
+	if($length < $min or $length>$max){ return " $ent " }
+	else {return '<ne class="'.lc($tag).'" tagger="abner">'.$ent.'</ne>'; }
+}
+
+
+

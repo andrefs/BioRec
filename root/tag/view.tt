@@ -1,0 +1,36 @@
+
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Name:</b></td>
+<td>
+    
+    [%  item.name %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Description:</b></td>
+<td>
+    
+    [%  item.description %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Papers:</b></td>
+<td>
+    
+    [% FOR val = item.papers; val; ', '; END %]
+    
+</td>
+</tr>
+
+</table>
+<hr/>
+<a href="[% c.uri_for_action('/tag/edit', item.id,  ) %]">Edit</a>
+<hr/>
+<a href="[% c.uri_for_action('/tag/list' ) %]">List</a>
+

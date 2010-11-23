@@ -1,0 +1,5 @@
+
+[% destroywidget %]
+<br>
+<a href="[% c.uri_for_action( '/class/list' ) %]">List</a>
+

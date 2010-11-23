@@ -1,0 +1,41 @@
+
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Set ID:</b></td>
+<td>
+    
+    [%  item.id %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Submission Date:</b></td>
+<td>
+    
+    [%  item.submission_date %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Papers:</b></td>
+<td>
+    
+    [% FOR val = item.paper_sets;'<a href="';
+			c.uri_for_action( '/paper/view', [],val.paper_id.id, );
+			'"> ';val.paper_id.original_name;'</a>,<br /> '; 
+	END %]
+ 
+</td>
+</tr>
+
+</table>
+<hr/>
+<!--
+<a href="[% c.uri_for_action('/pset/edit', item.id,  ) %]">Edit</a>
+<br/>
+<a href="[% c.uri_for_action('/pset/list' ) %]">List</a>
+-->
+

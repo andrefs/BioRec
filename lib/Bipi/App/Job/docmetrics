@@ -1,0 +1,12 @@
+#!/usr/bin/perl -ws
+use strict; use warnings;
+use Lingua::EN::Fathom;
+
+my $analyzer = new Lingua::EN::Fathom;
+my $text = join '',<>;
+
+$analyzer->analyse_block($text);
+
+print 'paragraphs ',$analyzer->num_paragraphs,"\n";
+print 'lines ',$analyzer->num_text_lines,"\n";
+

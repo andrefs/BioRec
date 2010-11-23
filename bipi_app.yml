@@ -1,0 +1,37 @@
+---
+name: Bipi::App
+
+View::TT:
+    WRAPPER: 'wrapper.tt'
+
+InstantCRUD:
+    model_name: DBICSchemamodel
+    schema_name: DBSchema
+    maxrows: 10
+
+Model::DBICSchemamodel:
+    connect_info:
+        dsn: "dbi:SQLite:bipi.db"
+        user: 
+        password: 
+
+Model::TheSchwartz:
+  args:
+    verbose: 1
+    databases:
+      - dsn: dbi:SQLite:__path_to(etc/theschwartz.sqlt)__
+
+code_folder: 'lib/Bipi/App/Job'
+
+oscar:
+  jar: 'oscar3-a5.jar'
+  folder: '/opt/oscar3'
+
+folders:
+  uploads: 'files/uploads'
+  sets:  'files/sets'
+  sets_1_pdfs: '1_pdfs'
+  sets_2_txts: '2_txts'
+  sets_3_ner: '3_ner'
+  sets_4_join: '4_join'
+  

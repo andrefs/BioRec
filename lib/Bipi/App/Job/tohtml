@@ -1,0 +1,25 @@
+#!/usr/bin/perl -ws
+use strict; use warnings;
+
+my $text = join '',<>;
+
+# Sections
+
+$text =~ s/^Results$/<hr \/><h3>Results<\/h3>/gms;
+$text =~ s/^Introduction$/<hr \/><h3>Introduction<\/h3>/gms;
+$text =~ s/^Discussion$/<hr \/><h3>Discussion<\/h3>/gms;
+$text =~ s/^References$/<hr \/><h3>References<\/h3>/gms;
+$text =~ s/^Abstract$/<hr \/><h3>Abstract<\/h3>/gms;
+$text =~ s/^Methods$/<hr \/><h3>Methods<\/h3>/gms;
+$text =~ s/^Materials\s+and\s+Methods/<hr \/><h3>Materials and Methods<\/h3>/gms;
+$text =~ s/^Acknowledgements/<hr \/><h3>Acknowledgements<\/h3>/gms;
+#$text =~ s/<p>\s*Results\s*<br\s*\/><\/p>/<h3>Results<\/h3>/gms;
+#$text =~ s/<p>\s*Results\s*<br\s*\/><\/p>/<h3>Results<\/h3>/gms;
+#$text =~ s/<p>\s*Results\s*<br\s*\/><\/p>/<h3>Results<\/h3>/gms;
+
+$text =~ s/\n/<br \/>\n/gs;
+$text =~ s/\n([^\n]+)\n/\n<p>$1<\/p>/gs;
+
+
+
+print $text;

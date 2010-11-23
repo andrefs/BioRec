@@ -1,0 +1,41 @@
+#files_list{
+	margin-left: auto;
+	margin-right: auto;
+	width: 500px;
+	color: #0073B5;
+	font-weight: normal;
+}
+.upload_row{
+	color: #0073B5;
+	text-align: left;
+}
+.filename{
+	width: 400px;
+}
+
+.del_button{
+	background:none;
+	border:0;
+	color:#0073B5;
+}
+
+.del_button:hover{
+    text-decoration: underline; 
+    color:red; 
+}
+
+.del_td{
+	text-align:center;
+	width: 20px;
+}
+#waiting_wheel{
+	display: block;
+	visibility:hidden;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-image: url(images/loading_icon.gif);
+	text-align: center;	
+	height: 32px; width: 32px;
+	margin-left: auto;
+	margin-right: auto;
+}

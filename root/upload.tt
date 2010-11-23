@@ -1,0 +1,22 @@
+
+<div class="pager">
+<link href="[%base%]static/upload.css" type="text/css" rel="stylesheet"/>
+<script src="[%base%]javascript/multifile_compressed.js"></script>
+
+<form enctype="multipart/form-data" action="/analize" method = "post">
+	<input type="hidden" name="form_submit" value="yes">
+	<input id="my_file_element" type="file" name="file_1" >
+	<input type="submit" onClick="javascript:document.getElementById('waiting_wheel').style.visibility='visible';">
+</form>
+
+<!--<h2>Files</h2>-->
+<div id="waiting_wheel"></div>
+
+<table id="files_list">
+<script>
+	var multi_selector = new MultiSelector( document.getElementById( 'files_list' ), 20 );
+	multi_selector.addElement( document.getElementById( 'my_file_element' ) );
+</script>
+</table>
+</div>
+

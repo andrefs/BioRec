@@ -1,0 +1,2 @@
+#!/bin/bash
+DBIC_TRACE=2 script/bipi_app_server.pl --restart_directory "lib"

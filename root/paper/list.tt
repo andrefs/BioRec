@@ -1,0 +1,61 @@
+
+<table>
+<tr>
+
+<th> [% order_by_column_link('pset', 'Set') %] </th>
+
+
+<th> [% order_by_column_link('original_name', 'File Name') %] </th>
+
+
+<!--<th> [% order_by_column_link('pdf_path', 'File Path') %] </th>-->
+
+
+<th> [% order_by_column_link('ent_by_par', 'Entities/paragraph') %] </th>
+
+<th> [% order_by_column_link('status', 'Status') %] </th>
+
+
+
+ 
+</tr>
+[% WHILE (row = result.next) %]
+    <tr>
+    
+    
+    <td><a href="[% c.uri_for_action( '/pset/view', [], row.pset,  ) %]">[% row.pset %]</a><br /></td>
+    
+    <td>
+    
+    [%  row.original_name %]
+    
+    </td>
+    
+<!--<td>
+    
+    [%  row.file_path %]
+    
+    </td>-->
+    
+    <td class="center">
+    
+    [%  row.entities_by_paragraph %]
+    
+    </td> 
+  <td>
+    
+    [%  row.status %]
+    
+    </td>
+    
+    [% SET id = row.$pri %]
+    <td><a href="[% c.uri_for_action( '/paper/view', [], row.id,  ) %]">View</a></td>
+    <!--<td><a href="[% c.uri_for_action( '/paper/edit', [], row.id,  ) %]">Edit</a></td>
+    <td><a href="[% c.uri_for_action( '/paper/destroy', [], row.id,  ) %]">Delete</a></td>-->
+    </tr>
+[% END %]
+</table>
+[% PROCESS pager.tt %]
+<br/>
+<a href="[% c.uri_for('/upload' ) %]">Upload more</a>
+

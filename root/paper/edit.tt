@@ -1,0 +1,7 @@
+
+[% widget %]
+<br>
+<a href="[% c.uri_for_action( '/paper/list' ) %]">List</a>
+<hr>
+[% form.render %]
+

@@ -1,0 +1,5 @@
+
+[% destroywidget %]
+<br>
+<a href="[% c.uri_for_action( '/entity/list' ) %]">List</a>
+

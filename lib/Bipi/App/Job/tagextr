@@ -1,0 +1,36 @@
+#!/usr/bin/perl -ws
+use warnings; use strict;
+use base qw(HTML::Parser);
+
+our(
+	$ac, 	# Output to sort | uniq -c | sort -nr (sort by number of ocurrences)
+	$kt, 	# 'Keep tags': keeps the original XML-style tags
+	$lt, 	# 'List tags': just output the tags, sorted by number of ocurrences
+	$sort	# Sort alphabetically
+);
+
+my $text;
+{
+	my $file = shift;
+	open(FILE,$file) or die "Could not open file $file!";
+	local $/;
+	$text = <FILE>;
+	close FILE;
+}
+
+open(OUT,"|-:utf8", "sort | uniq -c | sort -nr") if ($ac);
+open(OUT,"|-:utf8", "sort -u") if ($sort);
+
+while($text =~ /<ne (.*?)>(.*?)<\/ne>/gs){
+		my $out;
+
+		if    ($kt) { $out = "<ne $1>$2</ne>"; 	 }
+		elsif ($lt) { $out = "<ne $1>";			 }	
+		else	    { $out = $2;				 }
+
+		if($ac or $sort) { print OUT "$out\n"; }
+		else      		 { print "$out\n";	   }
+}
+
+
+close OUT;

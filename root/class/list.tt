@@ -1,0 +1,54 @@
+
+<table>
+<tr>
+
+<th> [% order_by_column_link('rank', 'Rank') %] </th>
+
+
+<th> [% order_by_column_link('name', 'Name') %] </th>
+
+
+<th> [% order_by_column_link('description', 'Description') %] </th>
+
+<!--<th> entity_ids </th>-->
+
+ 
+</tr>
+[% WHILE (row = result.next) %]
+    <tr>
+    
+    <td>
+    
+    [%  row.rank %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.name %]
+    
+    </td>
+    
+    <td>
+    
+    [%  row.description %]
+    
+    </td>
+    
+    <!--<td>
+    
+    [% FOR val = row.entity_ids; val; ', '; END %]
+    
+    </td>
+     
+    [% SET id = row.$pri %]
+    <td><a href="[% c.uri_for_action( '/class/view', [], row.id,  ) %]">View</a></td>
+    <td><a href="[% c.uri_for_action( '/class/edit', [], row.id,  ) %]">Edit</a></td>
+    <td><a href="[% c.uri_for_action( '/class/destroy', [], row.id,  ) %]">Delete</a></td>-->
+    </tr>
+[% END %]
+</table>
+[% PROCESS pager.tt %]
+<br/>
+<a href="[% c.uri_for_action('/class/edit' ) %]">Add</a>
+

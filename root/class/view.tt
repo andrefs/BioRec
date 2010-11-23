@@ -1,0 +1,45 @@
+
+<table name="view">
+
+<tr>
+<td class="view_label"><b>Rank:</b></td>
+<td>
+    
+    [%  item.rank %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Name:</b></td>
+<td>
+    
+    [%  item.name %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Description:</b></td>
+<td>
+    
+    [%  item.description %]
+    
+</td>
+</tr>
+
+<tr>
+<td class="view_label"><b>Entity Ids:</b></td>
+<td>
+    
+    [% FOR val = item.entity_ids; val; ', '; END %]
+    
+</td>
+</tr>
+
+</table>
+<hr/>
+<a href="[% c.uri_for_action('/class/edit', item.id,  ) %]">Edit</a>
+<hr/>
+<a href="[% c.uri_for_action('/class/list' ) %]">List</a>
+

@@ -1,0 +1,63 @@
+#!/usr/bin/perl -ws
+use warnings; use strict;
+use 5.010;
+
+#usage: o3abjoin o3file abner_ne_file
+my @text;
+my $oscar3 = shift;
+open(OSCAR3,$oscar3) or die "Could not open file $oscar3";
+@text = <OSCAR3>;
+close OSCAR3;
+
+my $abner_ne = shift;
+open(ABNERNE,$abner_ne);
+shift @text;
+while(<ABNERNE>){
+	/^<ne (.*?)>\s*(.*?)\s*<\/ne>$/;
+	my $ab_tag = $1;
+	my $ne = $2;
+	for (@text){
+		$_ =~ s/<ne (.*?)>\s*\Q$ne\E\s*<\/ne>/proc($1,$ab_tag,$ne)/gse;# <$tag>$ne<\/ne>/gs;
+	}
+}
+for (@text){ print }
+close ABNERNE;
+
+sub proc{
+	my $o3_tag = shift;
+	my $ab_tag = shift;
+	my $ne = shift;
+
+	if($o3_tag ~~ 'enzyme') { return "<ne $o3_tag>$ne</ne>" }
+	else 					{ return "<ne $ab_tag>$ne</ne>" }
+}
+
+	
+
+__END__
+$first_line<?xml-stylesheet type=\"text/css\" href=\"bipi.css\"?>\n";
+my $header = <<END;
+$first_line
+<style TYPE="text/css">
+P
+{
+	display: block;
+	margin-top: 20px;
+}
+PROTEIN,DNA,RNA,CELL_TYPE,CELL_LINE
+{
+	color: #FF0000;
+	font-weight: bold;
+}
+
+CM,RN,CJ,CPR,ASE,PRW,ONT
+{
+	background-color: #00FF00;
+}
+</style>
+END
+
+print $header;
+
+
+
